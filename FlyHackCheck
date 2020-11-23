@@ -1,0 +1,36 @@
+    @EventHandler
+    public void onMove(PlayerMoveEvent e) {
+        Player p = e.getPlayer( );
+        Location s1 = new Location( p.getWorld( ),p.getLocation( ).getX( ),p.getLocation( ).getY( ) - 1,p.getLocation( ).getZ( ) );
+        Location s2 = new Location( p.getWorld( ),p.getLocation( ).getX( ),p.getLocation( ).getY( ) - 2,p.getLocation( ).getZ( ) );
+        Location s3 = new Location( p.getWorld( ),p.getLocation( ).getX( ),p.getLocation( ).getY( ) - 3,p.getLocation( ).getZ( ) );
+        Location to = e.getTo( );
+        Location from = e.getFrom( );
+        if ( p.getGameMode( ).equals( GameMode.CREATIVE ) || p.getGameMode( ).equals( GameMode.SPECTATOR ) || p.getAllowFlight() || p.isFlying()) return;
+        if(to == from)return;
+        if ( s1.getBlock( ).getType( ).equals( Material.AIR ) && s2.getBlock( ).getType( ).equals( Material.AIR ) && s3.getBlock( ).getType( ).equals( Material.AIR ) ) {
+            Location xm1 = new Location( p.getWorld( ),p.getLocation( ).getX( )-1,p.getLocation( ).getY( ) - 1,p.getLocation( ).getZ( ) );
+            Location xp1 = new Location( p.getWorld( ),p.getLocation( ).getX( )+1,p.getLocation( ).getY( )-1,p.getLocation( ).getZ( ) );
+            Location zm1 = new Location( p.getWorld( ),p.getLocation( ).getX( ),p.getLocation( ).getY( )-1,p.getLocation( ).getZ( )-1 );
+            Location zp1 = new Location( p.getWorld( ),p.getLocation( ).getX( ),p.getLocation( ).getY( )-1,p.getLocation( ).getZ( )+1 );
+            if(xm1.getBlock().getType().equals( Material.AIR ) && xp1.getBlock().getType().equals( Material.AIR ) && zm1.getBlock().getType().equals( Material.AIR ) && zp1.getBlock().getType().equals( Material.AIR )){
+                Location xm2 = new Location( p.getWorld( ),p.getLocation( ).getX( )-2,p.getLocation( ).getY( ) - 1,p.getLocation( ).getZ( ) );
+                Location xp2 = new Location( p.getWorld( ),p.getLocation( ).getX( )+2,p.getLocation( ).getY( )-1,p.getLocation( ).getZ( ) );
+                Location zm2 = new Location( p.getWorld( ),p.getLocation( ).getX( ),p.getLocation( ).getY( )-1,p.getLocation( ).getZ( )-2 );
+                Location zp2 = new Location( p.getWorld( ),p.getLocation( ).getX( ),p.getLocation( ).getY( )-1,p.getLocation( ).getZ( )+2 );
+                if(xm2.getBlock().getType().equals( Material.AIR ) && xp2.getBlock().getType().equals( Material.AIR ) && zm2.getBlock().getType().equals( Material.AIR ) && zp2.getBlock().getType().equals( Material.AIR )){
+                    Location d1 = new Location( p.getWorld( ),p.getLocation( ).getX( )-1,p.getLocation( ).getY( ) - 1,p.getLocation( ).getZ( )-1 );
+                    Location d2 = new Location( p.getWorld( ),p.getLocation( ).getX( )+1,p.getLocation( ).getY( ) - 1,p.getLocation( ).getZ( )-1 );
+                    Location d3 = new Location( p.getWorld( ),p.getLocation( ).getX( )-1,p.getLocation( ).getY( ) - 1,p.getLocation( ).getZ( )+1 );
+                    Location d4 = new Location( p.getWorld( ),p.getLocation( ).getX( )+1,p.getLocation( ).getY( ) - 1,p.getLocation( ).getZ( )+1 );
+                    if(d1.getBlock().getType().equals( Material.AIR ) && d2.getBlock().getType().equals( Material.AIR ) && d3.getBlock().getType().equals( Material.AIR ) && d4.getBlock().getType().equals( Material.AIR )){
+                        if ( from.getY() == to.getY() ) {
+                            p.teleport( from );
+                        }
+                    }
+                }
+
+            }
+
+        }
+    }
